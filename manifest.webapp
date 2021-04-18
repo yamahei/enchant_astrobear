@@ -1,0 +1,18 @@
+{
+  "name": "Astro Bear",
+  "description": "Astro Bear is the simplest game ever. Only one finger is required to play.",
+  "launch_path": "/index.html",
+  "icons": {
+    "512": "/assets/icon-512.png",
+    "128": "/assets/icon-128.png",
+    "60": "/assets/icon-60.png"
+  },
+  "developer": {
+    "name": "yamahei",
+    "url": "http://yamahei.hatenablog.com/"
+  },
+  "default_locale": "en",
+  "type": "web",
+  "fullscreen": "true",
+  "orientation": [ "portrait-primary" ]
+}

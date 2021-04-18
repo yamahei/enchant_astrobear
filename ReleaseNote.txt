@@ -1,0 +1,15 @@
+----------------------
+Ver1.0(1) - 2014/05/26
+    First Release
+Ver1.1(2) - 2014/06/01
+    Add BackGround
+Ver1.2(3) - 2014/06/08
+    Fix Ad visibility
+    Fix Screen Size
+Ver1.3(4) - 2014/06/15
+    Fix sound encoding
+    Add Title and Help
+----------------------
+Ver1.4(5) - 2015/04/04
+    Publish as heroku app
+
