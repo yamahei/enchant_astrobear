@@ -47,16 +47,16 @@ function start(){
     	,'./img/bg_test.jpg'
     ]);
     if( typeof app != "undefined" ){
-		app.preload('./se/crash24.ogg');
-		app.preload('./se/fall01.ogg');
-		app.preload('./se/noise09.ogg');
-		app.preload('./se/power38.ogg');
+		app.preload('./se/crash24.mp3');
+		app.preload('./se/fall01.mp3');
+		app.preload('./se/noise09.mp3');
+		app.preload('./se/power38.mp3');
     }else{
 		game.preload([
-			 './se/crash24.ogg'
-			,'./se/fall01.ogg'
-			,'./se/noise09.ogg'
-			,'./se/power38.ogg'
+			 './se/crash24.mp3'
+			,'./se/fall01.mp3'
+			,'./se/noise09.mp3'
+			,'./se/power38.mp3'
 		]);
     }
 
@@ -70,16 +70,16 @@ function start(){
 		game.addEventListener(EVENT_PLAY, function(){
 			game.popScene();
 			game.pushScene(new StageScene(game.level));
-		});	
+		});
 		game.addEventListener(EVENT_HELP, function(){
 			game.popScene();
 			game.pushScene(new HelpScene());
-		});	
+		});
 		game.addEventListener(EVENT_NEXT, function(){
 			game.popScene();
 			game.level += 1;
 			game.pushScene(new StageScene(game.level));
-		});	
+		});
 		game.addEventListener(EVENT_REPLAY, function(){
 			game.popScene();
 			game.level = 1;
@@ -115,7 +115,7 @@ var TitleScene = enchant.Class.create(enchant.Scene, {
 		var help = new CharBase(145, 63, './img/help.png');
 		help.x = (game.width / 2) + 2;
 		help.y = game.height / 2;
-		help.addEventListener('touchend', function(){ 
+		help.addEventListener('touchend', function(){
 			var e = new enchant.Event(EVENT_HELP);
 			game.dispatchEvent(e);
 		});
@@ -123,7 +123,7 @@ var TitleScene = enchant.Class.create(enchant.Scene, {
 		var play = new CharBase(143, 63, './img/play.png');
 		play.x = (game.width / 2) - play.width;
 		play.y = game.height / 2;
-		play.addEventListener('touchend', function(){ 
+		play.addEventListener('touchend', function(){
 			var e = new enchant.Event(EVENT_PLAY);
 			game.dispatchEvent(e);
 		});
@@ -132,7 +132,7 @@ var TitleScene = enchant.Class.create(enchant.Scene, {
 			var install = new CharBase(226, 63, './img/install.png');
 			install.x = play.x;
 			install.y = play.y + play.height;
-			install.addEventListener('touchend', function(){ 
+			install.addEventListener('touchend', function(){
 				window.ffapp.install();
 			});
 			scene.addChild(install);
@@ -163,7 +163,7 @@ var HelpScene = enchant.Class.create(enchant.Scene, {
 		var play = new CharBase(143, 63, './img/play.png');
 		play.x = this.getCenterOffset(play);
 		play.y = baseY;
-	    play.addEventListener('touchend', function(){ 
+	    play.addEventListener('touchend', function(){
 			var e = new enchant.Event(EVENT_PLAY);
 			game.dispatchEvent(e);
 	    });
@@ -174,7 +174,7 @@ var HelpScene = enchant.Class.create(enchant.Scene, {
 
 		var touch = new enchant.Sprite(game.width, game.height);
 		touch.oldY = undefined;
-	    touch.addEventListener('enterframe', function(e){ 
+	    touch.addEventListener('enterframe', function(e){
 	    	if(touch.oldY === undefined){
 	    		var minHeight = -(help.height - game.height) - 50;
 	    		if(0 < help.y )
@@ -190,28 +190,28 @@ var HelpScene = enchant.Class.create(enchant.Scene, {
 	    	}
 	    	console.log(this.y);
 	    });
-	    touch.addEventListener('touchstart', function(e){ 
+	    touch.addEventListener('touchstart', function(e){
 			touch.oldY = e.y;
 	    });
-	    touch.addEventListener('touchend', function(e){ 
+	    touch.addEventListener('touchend', function(e){
 			touch.oldY = undefined;
 	    });
-	    touch.addEventListener('touchmove', function(e){ 
+	    touch.addEventListener('touchmove', function(e){
 	    	var moveY = touch.oldY - e.y;
-	    	help.y -= moveY; 
+	    	help.y -= moveY;
 			touch.oldY = e.y;
 	    });
     	scene.addChild(touch);
-		
+
 	},
 	setImgAndLabel: function(group, currentY, width, height, image, msg){
 		var offsetY = 8;
 		var image = new CharBase(width, height, image);
-		image.x = this.getCenterOffset(image); 
+		image.x = this.getCenterOffset(image);
 		image.y = currentY;  currentY+= image.height + offsetY;
 		group.addChild(image);
 		var label = this.getLabel(msg);
-		label.x = this.getCenterOffset(label); 
+		label.x = this.getCenterOffset(label);
 		label.y = currentY;  currentY+= label.height + offsetY;
 		group.addChild(label);
 		return currentY;
@@ -248,7 +248,7 @@ var StageScene = enchant.Class.create(enchant.Scene, {
     	var middle = game.height / 2;
     	var bottom = game.height;
     	var scene = this;
-    	
+
     	//set Bear
     	var bear = new Bear(level);
     	bear.pointByCenter(Math.random() * (game.width - 32) + 16, bottom - 82);
@@ -294,18 +294,18 @@ var StageScene = enchant.Class.create(enchant.Scene, {
     	score.x = 4;
     	score.y = 4;
     	scene.addChild(score);
-    	
+
     	//event listener
 	    game.addEventListener(EVENT_START, function(){
 	    	game.gaming = true;
 	    });
-	    game.addEventListener(EVENT_CLEAR, function(){ 
+	    game.addEventListener(EVENT_CLEAR, function(){
 	    	game.gaming = false;
 			var clear = new ClearLabel();
 			clear.pointByCenter(center, middle);
 			scene.addChild(clear);
 	    });
-	    game.addEventListener(EVENT_FAILED, function(){ 
+	    game.addEventListener(EVENT_FAILED, function(){
 	    	game.gaming = false;
 			var replay = new ReplayLabel();
 			replay.pointByCenter(center, middle - replay.height / 2);
@@ -314,8 +314,8 @@ var StageScene = enchant.Class.create(enchant.Scene, {
 			share.pointByCenter(center, middle + share.height / 2);
 			scene.addChild(share);
 	    });
-    	
-    	
+
+
     },
     getMeteoritePoints: function(num, offsetX, offsetU, offsetB){
     	var game = enchant.Core.instance;
@@ -374,17 +374,17 @@ var Bear = enchant.Class.create(CharBase, {
 		this.left = 0;
 		this.right = 0;
 	    game.addEventListener(EVENT_START, function(){
-	    	bear.setSpeed(0); 
-	    	bear.operation = true; 
-	    	bear.moving = true; 
+	    	bear.setSpeed(0);
+	    	bear.operation = true;
+	    	bear.moving = true;
 	    });
-	    game.addEventListener(EVENT_CLEAR, function(){ 
-	    	bear.operation = false; 
-	    	bear.moving = false; 
+	    game.addEventListener(EVENT_CLEAR, function(){
+	    	bear.operation = false;
+	    	bear.moving = false;
 	    });
-	    game.addEventListener(EVENT_FAILED, function(){ 
+	    game.addEventListener(EVENT_FAILED, function(){
 	    	bear.frame = 18;
-	    	bear.operation = false; 
+	    	bear.operation = false;
 	    	bear.speedX *= -(0.5 + Math.random());
 			bear.left = 0;
 			bear.right = 0;
@@ -398,9 +398,9 @@ var Bear = enchant.Class.create(CharBase, {
 				if(bear.y + bear.height < 0){
 					bear.moving = false;
 				    if( typeof app != "undefined" )
-				    	app.play('./se/fall01.ogg');
+				    	app.play('./se/fall01.mp3');
 				    else
-						game.assets['./se/fall01.ogg'].play();
+						game.assets['./se/fall01.mp3'].play();
 					var e = new enchant.Event(EVENT_FAILED);
 					game.dispatchEvent(e);
 				}else{
@@ -414,7 +414,7 @@ var Bear = enchant.Class.create(CharBase, {
 					}
 					this.frame = 15 + this.counter;
 				}
-				
+
 				if(4 < bear.left) bear.left = 4;
 				if(4 < bear.right) bear.right = 4;
 				bear.x += bear.right - bear.left;
@@ -457,11 +457,11 @@ var ISS = enchant.Class.create(CharBase, {
 	    game.addEventListener(EVENT_START, function(){
 			iss.collision = true;
 	    });
-	    game.addEventListener(EVENT_CLEAR, function(){ 
+	    game.addEventListener(EVENT_CLEAR, function(){
 			iss.collision = false;
 			iss.moving = false;
 	    });
-	    game.addEventListener(EVENT_FAILED, function(){ 
+	    game.addEventListener(EVENT_FAILED, function(){
 	    });
 	    this.addEventListener('enterframe', function(){
 			var game = enchant.Core.instance;
@@ -478,22 +478,22 @@ var ISS = enchant.Class.create(CharBase, {
 			if(iss.collision){
 				if(iss.intersectR(iss.bear)){
 				    if( typeof app != "undefined" )
-						app.play('./se/power38.ogg');
-				    	//app.play('./se/noise09.ogg');
+						app.play('./se/power38.mp3');
+				    	//app.play('./se/noise09.mp3');
 				    else
-						game.assets['./se/power38.ogg'].play();
-						//game.assets['./se/noise09.ogg'].play();
+						game.assets['./se/power38.mp3'].play();
+						//game.assets['./se/noise09.mp3'].play();
 					var e = new enchant.Event(EVENT_CLEAR);
 					game.dispatchEvent(e);
 				}
 			}
 	    });
     },
-	fatten: function(array, times){ 
-		var a=[]; 
-		for (var i=array.length; i--;){ 
-			for (var j=times; j--;){ a.unshift(array[i]); } 
-		} 
+	fatten: function(array, times){
+		var a=[];
+		for (var i=array.length; i--;){
+			for (var j=times; j--;){ a.unshift(array[i]); }
+		}
 		return a;
 	},
     dummy: function(){}
@@ -501,8 +501,8 @@ var ISS = enchant.Class.create(CharBase, {
 
 /*
 	class: Meteorite::CharBase
-		rotate: 
-		directionX, directionY: 
+		rotate:
+		directionX, directionY:
 */
 var Meteorite = enchant.Class.create(CharBase, {
     initialize: function(level, type, bear){
@@ -526,10 +526,10 @@ var Meteorite = enchant.Class.create(CharBase, {
 	    game.addEventListener(EVENT_START, function(){
 			meteo.collision = true;
 	    });
-	    game.addEventListener(EVENT_CLEAR, function(){ 
+	    game.addEventListener(EVENT_CLEAR, function(){
 			meteo.collision = false;
 	    });
-	    game.addEventListener(EVENT_FAILED, function(){ 
+	    game.addEventListener(EVENT_FAILED, function(){
 	    });
 	    this.addEventListener('enterframe', function(){
 	    	var game = enchant.Core.instance;
@@ -557,9 +557,9 @@ var Meteorite = enchant.Class.create(CharBase, {
 					if(meteo.intersectR(meteo.bear)){
 						if(game.gaming){
 							if( typeof app != "undefined" )
-								app.play('./se/crash24.ogg');
+								app.play('./se/crash24.mp3');
 							else
-								game.assets['./se/crash24.ogg'].play();
+								game.assets['./se/crash24.mp3'].play();
 							var e = new enchant.Event(EVENT_FAILED);
 							game.dispatchEvent(e);
 						}else{
@@ -598,20 +598,20 @@ var TouchPanel = enchant.Class.create(enchant.Sprite, {
 			if(speed != 0) speed += bear.minSpeed * (speed / Math.abs(speed));
 			return speed;
 		};
-	    this.addEventListener('touchstart', function(e){ 
+	    this.addEventListener('touchstart', function(e){
 			panel.touch = true;
 	    	panel.speedX = getSpeedX(e.x);
 	    });
-	    this.addEventListener('touchmove', function(e){ 
+	    this.addEventListener('touchmove', function(e){
 			panel.touch = true;
 	    	panel.speedX = getSpeedX(e.x);
 	    });
-	    this.addEventListener('touchend', function(e){ 
+	    this.addEventListener('touchend', function(e){
 			panel.touch = false;
 			panel.speedX = 0;
 	    });
 	    this.addEventListener('enterframe', function(){
-			if(panel.touch) 
+			if(panel.touch)
 				bear.setSpeed(panel.speedX);
 	    });
     },
@@ -628,7 +628,7 @@ var ImageLabel = enchant.Class.create(CharBase, {
 		CharBase.call(this, width, height, image);
 		var game = enchant.Core.instance;
 		var label = this;
-	    this.addEventListener('touchend', function(){ 
+	    this.addEventListener('touchend', function(){
     		if(event){
 				var e = new enchant.Event(event);
 				game.dispatchEvent(e);
@@ -652,11 +652,11 @@ var StartLabel = enchant.Class.create(ImageLabel, {
     selfEvent: function(e){
 		var game = enchant.Core.instance;
 		if( typeof app != "undefined" )
-	    	app.play('./se/noise09.ogg');
-			//app.play('./se/power38.ogg');
+	    	app.play('./se/noise09.mp3');
+			//app.play('./se/power38.mp3');
 		else
-		    game.assets['./se/noise09.ogg'].play();
-		    //game.assets['./se/power38.ogg'].play();
+		    game.assets['./se/noise09.mp3'].play();
+		    //game.assets['./se/power38.mp3'].play();
 		this.parentNode.removeChild(this);
     },
     dummy: function(){}
@@ -683,7 +683,7 @@ var ReplayLabel = enchant.Class.create(ImageLabel, {
 		ImageLabel.call(this, 213, 63, './img/replay.png', EVENT_REPLAY);
 		var game = enchant.Core.instance;
 		var label = this;
-	    game.addEventListener(EVENT_CLEAR, function(){ 
+	    game.addEventListener(EVENT_CLEAR, function(){
 			label.visible = false;
 	    });
     },
@@ -701,7 +701,7 @@ var ShareLabel = enchant.Class.create(ImageLabel, {
 		this.level = level;
 		var game = enchant.Core.instance;
 		var label = this;
-	    game.addEventListener(EVENT_CLEAR, function(){ 
+	    game.addEventListener(EVENT_CLEAR, function(){
 			label.visible = false;
 	    });
     },
@@ -711,7 +711,8 @@ var ShareLabel = enchant.Class.create(ImageLabel, {
 		var api = "https://twitter.com/share";
 		var param = {
 			//"url": "http%3A%2F%2Fgoo.gl%2F4Ms2Hc",
-			"url": "http%3A%2F%2Fastrobear.herokuapp.com",
+			//"url": "http%3A%2F%2Fastrobear.herokuapp.com",
+			"url": location.href,
 			"text": "I scored " + this.level + " on free 'Astro Bear'"
 		};
 		var parameter = [];
@@ -719,12 +720,12 @@ var ShareLabel = enchant.Class.create(ImageLabel, {
 			parameter.push(p + "=" + param[p]);
 		}
 		var url = api + "?" + parameter.join("&");
-		
+
 		if( typeof app != "undefined" )
 			app.openUri(url);
 		else
 	    	window.open(url);
-    
+
     },
     dummy: function(){}
 });
@@ -765,7 +766,7 @@ var BG = enchant.Class.create(enchant.Sprite, {
 		this.scaleX = scale;
 		this.scaleY = scale;
 		this.y = (height - h) / 2;
-		
+
 		var bg = this;
 		var offsetX = (width - w) / 2;
 		var scrollableWidth = game.width - width;

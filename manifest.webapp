@@ -1,7 +1,7 @@
 {
   "name": "Astro Bear",
   "description": "Astro Bear is the simplest game ever. Only one finger is required to play.",
-  "launch_path": "/index.html",
+  "launch_path": "/pwa.html",
   "icons": {
     "512": "/assets/icon-512.png",
     "128": "/assets/icon-128.png",
