@@ -49,13 +49,12 @@
 		const el = document.createElement('pwa-update');
 		document.body.appendChild(el);
 	</script>-->
-    <link rel="manifest" href="manifest.webmanifest"></link>
     <!-- PWA -->
-    <!-- <script src='pwa/taprunner/sw.js'></script> -->
+    <link rel="manifest" href="manifest.webmanifest"></link>
     <script>
 		window.addEventListener('load', function() {
 			if ('serviceWorker' in navigator) {
-				const path_to_service_worke = "./pwabuilder-sw.js";
+				const path_to_service_worke = "/enchant_astrobear/pwabuilder-sw.js";
 				const register_option = {scope: "."};
 				navigator.serviceWorker.register(path_to_service_worke, register_option)
 				.then(function(registration) {
