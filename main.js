@@ -400,7 +400,7 @@ var Bear = enchant.Class.create(CharBase, {
 				    if( typeof app != "undefined" )
 				    	app.play('./se/fall01.mp3');
 				    else
-						game.assets['./se/fall01.mp3'].play();
+						game.assets['./se/fall01.mp3'].clone().play();
 					var e = new enchant.Event(EVENT_FAILED);
 					game.dispatchEvent(e);
 				}else{
@@ -481,7 +481,7 @@ var ISS = enchant.Class.create(CharBase, {
 						app.play('./se/power38.mp3');
 				    	//app.play('./se/noise09.mp3');
 				    else
-						game.assets['./se/power38.mp3'].play();
+						game.assets['./se/power38.mp3'].clone().play();
 						//game.assets['./se/noise09.mp3'].play();
 					var e = new enchant.Event(EVENT_CLEAR);
 					game.dispatchEvent(e);
@@ -559,7 +559,7 @@ var Meteorite = enchant.Class.create(CharBase, {
 							if( typeof app != "undefined" )
 								app.play('./se/crash24.mp3');
 							else
-								game.assets['./se/crash24.mp3'].play();
+								game.assets['./se/crash24.mp3'].clone().play();
 							var e = new enchant.Event(EVENT_FAILED);
 							game.dispatchEvent(e);
 						}else{
@@ -655,7 +655,7 @@ var StartLabel = enchant.Class.create(ImageLabel, {
 	    	app.play('./se/noise09.mp3');
 			//app.play('./se/power38.mp3');
 		else
-		    game.assets['./se/noise09.mp3'].play();
+		    game.assets['./se/noise09.mp3'].clone().play();
 		    //game.assets['./se/power38.mp3'].play();
 		this.parentNode.removeChild(this);
     },

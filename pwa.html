@@ -32,7 +32,41 @@
             z-index: 65535;
 		}
 	</style>
-	<script src='./install.js'></script>
+	<!-- <script src='./install.js'></script> -->
+	<!--<script type="module">
+		// This is the "Offline page" service worker
+
+		// Add this below content to your HTML page inside a {script type="module"}{/script} tag, or add the js file to your page at the very top to register service worker
+		// If you get an error about not being able to import, double check that you have type="module" on your {script /} tag
+
+		/*
+		This code uses the pwa-update web component https://github.com/pwa-builder/pwa-update to register your service worker,
+		tell the user when there is an update available and let the user know when your PWA is ready to use offline.
+		*/
+
+		import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+		const el = document.createElement('pwa-update');
+		document.body.appendChild(el);
+	</script>-->
+    <link rel="manifest" href="manifest.webmanifest"></link>
+    <!-- PWA -->
+    <!-- <script src='pwa/taprunner/sw.js'></script> -->
+    <script>
+		window.addEventListener('load', function() {
+			if ('serviceWorker' in navigator) {
+				const path_to_service_worke = "./pwabuilder-sw.js";
+				const register_option = {scope: "."};
+				navigator.serviceWorker.register(path_to_service_worke, register_option)
+				.then(function(registration) {
+					console.log("serviceWorker registed.");
+				}).catch(function(error) {
+					console.warn("serviceWorker error.", error);
+				});
+			}
+		});
+	</script>
+
 	<script src="./enchant.js"></script>
 	<script src="./RootableIntersectSprite.js"></script>
 	<script src="./main.js"></script>
