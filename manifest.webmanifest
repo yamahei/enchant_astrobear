@@ -2,6 +2,7 @@
     "theme_color": "#0c27a1",
     "background_color": "#000000",
     "display": "standalone",
+    "orientation": "portrait",
     "scope": "/",
     "start_url": "pwa.html",
     "description": "Astro Bear is the simplest game ever. Only one finger is required to play.",
